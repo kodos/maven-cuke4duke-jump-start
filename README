@@ -1,1 +1,27 @@
 This is a Web Application Skeleton that is built using Maven.
+
+The features are:
+1. The Web Application is automatically deployed to the Server for integration-testing.
+2. Cucumber is used to drive BDD scenarios aginst the Web Application, using Cuke4Duke.
+3. The pageObjects approach has been used to model the Web Application for use by 
+   integration tests and Cucumber steps.
+4. Spring 3 is used to autowire the components of the web app and the steps together.
+5. Using Maven profiles, it will be possible to run the same Web tests against different
+   browsers.
+6. Uses Firefox as the browser used to drive the web application. This can be changed
+   easily to HtmlUnit or another browser.
+
+To use this project, cone it, installed the Java SDK and Maven 2, then issue the following
+two commands from the projects root folder:
+
+mvn -Dcucumber.installGems=true cuke4duke:cucumber
+mvn clean integration-test
+
+On initial run there will be a *lot* of things downloaded from Maven repositories. You
+should see the following as amongst the last lines of the Maven output:
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESSFUL
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 8 seconds
+
