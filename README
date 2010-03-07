@@ -3,13 +3,13 @@ This is a Web Application Skeleton that is built using Maven.
 The features are:
 1. The Web Application is automatically deployed to the Server for integration-testing.
 2. Cucumber is used to drive BDD scenarios aginst the Web Application, using Cuke4Duke.
-3. The pageObjects approach has been used to model the Web Application for use by 
+3. The pageObjects approach has been used to model the Web Application for use by
    integration tests and Cucumber steps.
 4. Spring 3 is used to autowire the components of the web app and the steps together.
 5. Using Maven profiles, it will be possible to run the same Web tests against different
    browsers.
 6. Uses Firefox as the browser used to drive the web application. This can be changed
-   easily to HtmlUnit or another browser.
+   easily to HtmlUnit, Chrome or Internet Explorer.  See below.
 7. Unit tests are run separately to integration tests.
 
 To use this project, clone it, installed the Java SDK and Maven 2, then issue the following
@@ -26,10 +26,16 @@ should see the following as amongst the last lines of the Maven output:
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time: 8 seconds
 
-*NOTE* When building the maven project for the first time there is a *LOT* of 
-cuke4duke dependencies downloaded, but just the first time. It takes a while, but only 
-the first time.  And now the weird part, if on the first run the Cucumber steps fail, 
+*NOTE* When building the maven project for the first time there is a *LOT* of
+cuke4duke dependencies downloaded, but just the first time. It takes a while, but only
+the first time.  And now the weird part, if on the first run the Cucumber steps fail,
 run 'mvn clean integration-test' again. This also only has to be done once.
+
+If you want to change the browser used for driving the web site then modify the POM by
+uncommenting out a line in the Cucumber Section. I'm looking into profiles so the POM 
+doesn't need to be modified.
+
+A list of drivers is documented in the Cucumber section of the POM.
 
 If you have any feedback, please email me: james underscore ladd at hotmail dot com.
 

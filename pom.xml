@@ -92,8 +92,12 @@
             <jvmArg>-Xmx384m</jvmArg>
             <jvmArg>-Dlog4j.configuration=file:///${project.basedir}/target/test-classes/log4j.properties</jvmArg>
             <jvmArg>-Dcuke4duke.objectFactory=cuke4duke.internal.jvmclass.SpringFactory</jvmArg>
-            <!-- Comment out the line below to use HTMLUnit instead of Firefox (default) -->
-            <jvmArg>-Dwebdriver.impl=org.openqa.selenium.firefox.FirefoxDriver</jvmArg>
+            <!-- Uncomment a line below to use a driver instead of Firefox (default) -->
+            <!-- you can also pass the '-Dwebdriver.impl=' from the command line -->
+            <!-- jvmArg>-Dwebdriver.impl=org.openqa.selenium.firefox.FirefoxDriver</jvmArg -->
+            <!-- jvmArg>-Dwebdriver.impl=org.openqa.selenium.htmlunit.HtmlUnitDriver</jvmArg -->
+            <!-- jvmArg>-Dwebdriver.impl=org.openqa.selenium.chrome.ChromeDriver</jvmArg -->
+            <!-- jvmArg>-Dwebdriver.impl=org.openqa.selenium.ie.InternetExplorerDriver</jvmArg -->
           </jvmArgs>
           <cucumberArgs>
             <cucumberArg>--verbose</cucumberArg>
@@ -171,6 +175,16 @@
       <artifactId>webdriver-firefox</artifactId>
       <version>0.9.7376</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.webdriver</groupId>
+      <artifactId>webdriver-ie</artifactId>
+      <version>0.9.7376</version>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.webdriver</groupId>
+      <artifactId>webdriver-chrome</artifactId>
+      <version>0.9.7376</version>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.webdriver</groupId>
