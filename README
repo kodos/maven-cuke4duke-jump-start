@@ -10,8 +10,9 @@ The features are:
    browsers.
 6. Uses Firefox as the browser used to drive the web application. This can be changed
    easily to HtmlUnit or another browser.
+7. Unit tests are run separately to integration tests.
 
-To use this project, cone it, installed the Java SDK and Maven 2, then issue the following
+To use this project, clone it, installed the Java SDK and Maven 2, then issue the following
 two commands from the projects root folder:
 
 mvn -Dcucumber.installGems=true cuke4duke:cucumber
@@ -24,4 +25,6 @@ should see the following as amongst the last lines of the Maven output:
 [INFO] BUILD SUCCESSFUL
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time: 8 seconds
+
+If you have any feedback, please email me: james underscore ladd at hotmail dot com.
 
