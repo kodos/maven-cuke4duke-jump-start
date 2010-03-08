@@ -92,12 +92,7 @@
             <jvmArg>-Xmx384m</jvmArg>
             <jvmArg>-Dlog4j.configuration=file:///${project.basedir}/target/test-classes/log4j.properties</jvmArg>
             <jvmArg>-Dcuke4duke.objectFactory=cuke4duke.internal.jvmclass.SpringFactory</jvmArg>
-            <!-- Uncomment a line below to use a driver instead of Firefox (default) -->
-            <!-- you can also pass the '-Dwebdriver.impl=' from the command line -->
-            <!-- jvmArg>-Dwebdriver.impl=org.openqa.selenium.firefox.FirefoxDriver</jvmArg -->
-            <!-- jvmArg>-Dwebdriver.impl=org.openqa.selenium.htmlunit.HtmlUnitDriver</jvmArg -->
-            <!-- jvmArg>-Dwebdriver.impl=org.openqa.selenium.chrome.ChromeDriver</jvmArg -->
-            <!-- jvmArg>-Dwebdriver.impl=org.openqa.selenium.ie.InternetExplorerDriver</jvmArg -->
+            <jvmArg>-Dwebdriver.impl=${webdriver.impl.class}</jvmArg>
           </jvmArgs>
           <cucumberArgs>
             <cucumberArg>--verbose</cucumberArg>
@@ -198,4 +193,40 @@
       <version>3.0.0.RELEASE</version>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>default</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <webdriver.impl.class>org.openqa.selenium.firefox.FirefoxDriver</webdriver.impl.class>
+      </properties>
+    </profile>
+    <profile>
+      <id>firefox</id>
+      <properties>
+        <webdriver.impl.class>org.openqa.selenium.firefox.FirefoxDriver</webdriver.impl.class>
+      </properties>
+    </profile>
+    <profile>
+      <id>htmlunit</id>
+      <properties>
+        <webdriver.impl.class>org.openqa.selenium.htmlunit.HtmlUnitDriver</webdriver.impl.class>
+      </properties>
+    </profile>
+    <profile>
+      <id>chrome</id>
+      <properties>
+        <webdriver.impl.class>org.openqa.selenium.chrome.ChromeDriver</webdriver.impl.class>
+      </properties>
+    </profile>
+    <profile>
+      <id>ie</id>
+      <properties>
+        <webdriver.impl.class>org.openqa.selenium.ie.InternetExplorerDriver</webdriver.impl.class>
+      </properties>
+    </profile>
+  </profiles>
 </project>

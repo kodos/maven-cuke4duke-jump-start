@@ -31,11 +31,10 @@ cuke4duke dependencies downloaded, but just the first time. It takes a while, bu
 the first time.  And now the weird part, if on the first run the Cucumber steps fail,
 run 'mvn clean integration-test' again. This also only has to be done once.
 
-If you want to change the browser used for driving the web site then modify the POM by
-uncommenting out a line in the Cucumber Section. I'm looking into profiles so the POM 
-doesn't need to be modified.
+If you want to change the browser used for driving the web site (default is Firefox) then
+specify it on the command line with a Maven profile; firefox, htmlunit, ie and chrome are
+valid profiles. For example, the following will run the test using HtmlUnit.
 
-A list of drivers is documented in the Cucumber section of the POM.
+mvn clean integration-test -P htmlunit
 
 If you have any feedback, please email me: james underscore ladd at hotmail dot com.
-
