@@ -115,6 +115,40 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>test</phase>
+            <configuration>
+              <tasks>
+                <echo message="------------------------------------------------------------------------"/>
+                <echo message="-- C O M P L E X I T Y --"/>
+                <taskdef resource="complexiantask.properties" classpath="lib/quality/complexian-0.14.1.jar"/>
+                  <echo message="-- NPATH"/>
+                  <complexian type="npath" threshold="7">
+                    <fileset dir="src" includes="**/*.java"/>
+                  </complexian>
+                  <echo message=""/>
+                  <echo message="-- CYCLOMATIC"/>
+                  <complexian type="cyclomatic" threshold="7">
+                    <fileset dir="src" includes="**/*.java"/>
+                  </complexian>
+                <echo message=""/>
+                <echo message="-- D U P L I C A T I O N --"/>
+                <taskdef resource="simiantask.properties" classpath="lib/quality/simian-2.2.24.jar"/>
+                <simian>
+                  <fileset dir="src" includes="**/*.java"/>
+                </simian>
+                <echo message=""/>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
@@ -174,11 +208,6 @@
     <dependency>
       <groupId>org.seleniumhq.webdriver</groupId>
       <artifactId>webdriver-ie</artifactId>
-      <version>0.9.7376</version>
-    </dependency>
-    <dependency>
-      <groupId>org.seleniumhq.webdriver</groupId>
-      <artifactId>webdriver-chrome</artifactId>
       <version>0.9.7376</version>
     </dependency>
     <dependency>
