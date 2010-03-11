@@ -12,6 +12,7 @@ The features are:
    easily to HtmlUnit, Chrome or Internet Explorer.  See below.
 7. Unit tests are run separately to integration tests.
 8. There are checks on code Complexity and Duplication.
+9. The database is setup and migrated automatically (Liquibase).
 
 To use this project, clone it, installed the Java SDK and Maven 2, then issue the following
 two commands from the projects root folder:

@@ -122,15 +122,12 @@
             <phase>test</phase>
             <configuration>
               <tasks>
-                <echo message="------------------------------------------------------------------------"/>
-                <echo message="-- C O M P L E X I T Y --"/>
+		<echo message="------------------------------------------------------------------------"/>
+		<echo message="-- C O M P L E X I T Y --"/>
                 <taskdef resource="complexiantask.properties" classpath="lib/quality/complexian-0.14.1.jar"/>
-                  <echo message="-- NPATH"/>
                   <complexian type="npath" threshold="7">
                     <fileset dir="src" includes="**/*.java"/>
                   </complexian>
-                  <echo message=""/>
-                  <echo message="-- CYCLOMATIC"/>
                   <complexian type="cyclomatic" threshold="7">
                     <fileset dir="src" includes="**/*.java"/>
                   </complexian>
@@ -145,6 +142,27 @@
             </configuration>
             <goals>
               <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-plugin</artifactId>
+        <version>1.9.5.0</version>
+        <executions>
+          <execution>
+            <phase>pre-integration-test</phase>
+            <configuration>
+              <changeLogFile>src/main/resources/db/db.changelog-current.xml</changeLogFile>
+              <driver>${database.driver}</driver>
+              <url>${database.url}</url>
+              <username>${database.username}</username>
+              <password>${database.password}</password>
+              <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+            </configuration>
+            <goals>
+              <goal>update</goal>
             </goals>
           </execution>
         </executions>
@@ -209,6 +227,7 @@
       <groupId>org.seleniumhq.webdriver</groupId>
       <artifactId>webdriver-ie</artifactId>
       <version>0.9.7376</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.webdriver</groupId>
@@ -221,6 +240,12 @@
       <artifactId>spring-context</artifactId>
       <version>3.0.0.RELEASE</version>
     </dependency>
+    <dependency>
+      <groupId>hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <version>1.8.0.7</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <profiles>
@@ -230,6 +255,10 @@
         <activeByDefault>true</activeByDefault>
       </activation>
       <properties>
+        <database.driver>org.hsqldb.jdbcDriver</database.driver>
+        <database.url>jdbc:hsqldb:file:target/dbms/my-webapp-db</database.url>
+        <database.username>sa</database.username>
+        <database.password></database.password>
         <webdriver.impl.class>org.openqa.selenium.firefox.FirefoxDriver</webdriver.impl.class>
       </properties>
     </profile>
